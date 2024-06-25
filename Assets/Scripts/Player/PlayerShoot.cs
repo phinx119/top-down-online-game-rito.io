@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class Weapon : MonoBehaviour
 {
@@ -7,15 +8,26 @@ public class Weapon : MonoBehaviour
 
     public float TimeBtwFire = 0.2f;
     public float bulletForce;
+    public float bulletLifeTime = 2f;
+    public int poolSize = 20;
 
-    private float timeBtwFire;
+    private float timeBtwFireCounter;
+    private ObjectPool<MonoBehaviour> bulletPool;
+
+    void Start()
+    {
+        MonoBehaviour bulletComponent = bullet.GetComponent<MonoBehaviour>();
+        bulletPool = new ObjectPool<MonoBehaviour>(bulletComponent, poolSize);
+
+        timeBtwFireCounter = TimeBtwFire;
+    }
 
     void Update()
     {
         RotateGun();
-        timeBtwFire -= Time.deltaTime;
+        timeBtwFireCounter -= Time.deltaTime;
 
-        if (Input.GetMouseButton(0) && timeBtwFire < 0)
+        if (Input.GetMouseButton(0) && timeBtwFireCounter < 0)
         {
             FireBullet();
         }
@@ -33,11 +45,35 @@ public class Weapon : MonoBehaviour
 
     void FireBullet()
     {
-        timeBtwFire = TimeBtwFire;
+        timeBtwFireCounter = TimeBtwFire;
 
-        GameObject bulletTmp = Instantiate(bullet, firePoint.position, Quaternion.identity);
+        MonoBehaviour bulletTmp = bulletPool.GetPooledObject();
+        if (bulletTmp != null)
+        {
+            bulletTmp.transform.position = firePoint.position;
+            bulletTmp.transform.rotation = firePoint.rotation;
+            bulletTmp.gameObject.SetActive(true);
 
-        Rigidbody2D rb = bulletTmp.GetComponent<Rigidbody2D>();
-        rb.AddForce(transform.right * bulletForce, ForceMode2D.Impulse);
+            Rigidbody2D rb = bulletTmp.GetComponent<Rigidbody2D>();
+            rb.velocity = Vector2.zero; // Reset velocity
+            rb.AddForce(firePoint.right * bulletForce, ForceMode2D.Impulse);
+
+            StartCoroutine(DeactivateBulletAfterTime(bulletTmp.gameObject, bulletLifeTime));
+        }
+        else
+        {
+            // Optionally: Instantiate a new bullet if pool is empty (not recommended for pooling)
+            GameObject newBullet = Instantiate(bullet, firePoint.position, firePoint.rotation);
+            Rigidbody2D rb = newBullet.GetComponent<Rigidbody2D>();
+            rb.AddForce(firePoint.right * bulletForce, ForceMode2D.Impulse);
+
+            StartCoroutine(DeactivateBulletAfterTime(newBullet, bulletLifeTime));
+        }
+    }
+
+    IEnumerator DeactivateBulletAfterTime(GameObject bullet, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        bullet.SetActive(false);
     }
 }

@@ -916,6 +916,8 @@ MonoBehaviour:
   firePoint: {fileID: 2022552261}
   TimeBtwFire: 0.2
   bulletForce: 9
+  bulletLifeTime: 2
+  poolSize: 20
 --- !u!1 &1286050484
 GameObject:
   m_ObjectHideFlags: 0
