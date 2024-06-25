@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Net.WebSockets;
 using System.Text;
 using System.Threading;
@@ -9,6 +10,9 @@ public class WSClient : MonoBehaviour
 {
     private ClientWebSocket websocket;
     public string url = "wss://websocket-server-kutx.onrender.com";
+    public GameObject player;
+    public GameObject clone;
+    public float sendInterval = 0.1f; // Interval in seconds
 
     async void Start()
     {
@@ -21,7 +25,10 @@ public class WSClient : MonoBehaviour
             Debug.Log("Connected to WebSocket server");
 
             // Start receiving messages
-            await ReceiveMessages();
+            _ = ReceiveMessages();
+
+            // Start sending player position at regular intervals
+            StartCoroutine(SendPlayerPositionAtIntervals());
         }
         catch (WebSocketException e)
         {
@@ -67,6 +74,7 @@ public class WSClient : MonoBehaviour
                 {
                     var message = Encoding.UTF8.GetString(buffer, 0, result.Count);
                     Debug.Log("Message received: " + message);
+                    HandleIncomingMessage(message);
                 }
             }
         }
@@ -81,6 +89,53 @@ public class WSClient : MonoBehaviour
         catch (Exception e)
         {
             Debug.LogError($"Exception while receiving messages: {e.Message}");
+        }
+    }
+
+    private void HandleIncomingMessage(string message)
+    {
+        // Assuming the message format is "x,y,z"
+        var position = ParsePosition(message);
+        if (position.HasValue)
+        {
+            clone.transform.position = position.Value;
+            Debug.Log("Clone position updated: " + position.Value);
+        }
+        else
+        {
+            Debug.LogError("Failed to parse position message: " + message);
+        }
+    }
+
+    private Vector3? ParsePosition(string message)
+    {
+        var parts = message.Split(',');
+        if (parts.Length == 3 &&
+            float.TryParse(parts[0], out var x) &&
+            float.TryParse(parts[1], out var y) &&
+            float.TryParse(parts[2], out var z))
+        {
+            return new Vector3(x, y, z);
+        }
+        return null;
+    }
+
+    public async void SendPlayerPosition()
+    {
+        if (player != null)
+        {
+            var position = player.transform.position;
+            var message = $"{position.x},{position.y},{position.z}";
+            await SendMessage(message);
+        }
+    }
+
+    private IEnumerator SendPlayerPositionAtIntervals()
+    {
+        while (true)
+        {
+            SendPlayerPosition();
+            yield return new WaitForSeconds(sendInterval);
         }
     }
 
