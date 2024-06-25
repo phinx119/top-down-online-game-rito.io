@@ -8,7 +8,7 @@ using UnityEngine;
 public class WSClient : MonoBehaviour
 {
     private ClientWebSocket websocket;
-    public string url = "ws://websocket-server-kutx.onrender.com";
+    public string url = "wss://websocket-server-kutx.onrender.com";
 
     async void Start()
     {
@@ -19,9 +19,6 @@ public class WSClient : MonoBehaviour
         {
             await websocket.ConnectAsync(serverUri, CancellationToken.None);
             Debug.Log("Connected to WebSocket server");
-
-            // Send a message to the server
-            await SendMessage("Hello from Unity");
 
             // Start receiving messages
             await ReceiveMessages();
