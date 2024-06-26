@@ -806,7 +806,7 @@ MonoBehaviour:
   url: wss://websocket-server-kutx.onrender.com
   player: {fileID: 276754264}
   clone: {fileID: 355002479}
-  sendInterval: 0.4
+  sendInterval: 0.001
 --- !u!4 &496752321
 Transform:
   m_ObjectHideFlags: 0
