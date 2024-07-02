@@ -217,7 +217,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 5f30a16109f93424283d09a7cbe8d55a, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -237,7 +237,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 8300149528244436813}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 5f30a16109f93424283d09a7cbe8d55a, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -324,6 +324,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1695373701389947380}
     m_Modifications:
+    - target: {fileID: 1540111618564873443, guid: 9e858d28d7e2c824fad7b4e1b435f5b3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1540111618564873443, guid: 9e858d28d7e2c824fad7b4e1b435f5b3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.73
+      objectReference: {fileID: 0}
     - target: {fileID: 1852158958658595810, guid: 9e858d28d7e2c824fad7b4e1b435f5b3,
         type: 3}
       propertyPath: m_SizeDelta.y
