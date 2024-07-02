@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public float bulletDamage = 2f;
+    public float LifeTime = 2f;
+
+    private CircleCollider2D circleCollider;
+
     void Start()
     {
-        
+        circleCollider = GetComponent<CircleCollider2D>();
+        StartCoroutine(EnableColliderAfterDelay(1f));
+        Destroy(this.gameObject, LifeTime);
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator EnableColliderAfterDelay(float delay)
     {
-        
+        circleCollider.enabled = false;
+        yield return new WaitForSeconds(delay);
+        circleCollider.enabled = true;
     }
 }
