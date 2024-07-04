@@ -10,8 +10,8 @@ public class PlayerSpawn : MonoBehaviour
 
     void Start()
     {
-        //playerPrefab = MainMenu.playerPrefab;
-        //virtualCamera = GameObject.FindObjectOfType<CinemachineVirtualCamera>();
+        playerPrefab = MainMenu.playerPrefab;
+        virtualCamera = GameObject.FindObjectOfType<CinemachineVirtualCamera>();
         SpawnPlayer();
     }
 
@@ -19,11 +19,11 @@ public class PlayerSpawn : MonoBehaviour
     {
         Transform spawnPoint = GetRandomSpawnPoint();
         GameObject player = Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
-        /*if (virtualCamera != null)
+        if (virtualCamera != null)
         {
             virtualCamera.Follow = player.transform;
             //virtualCamera.LookAt = player.transform;
-        }*/
+        }
     }
 
     Transform GetRandomSpawnPoint()
