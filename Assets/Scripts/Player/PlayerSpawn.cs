@@ -6,7 +6,7 @@ public class PlayerSpawn : MonoBehaviour
     public Transform[] spawnPoints;
     private CinemachineVirtualCamera virtualCamera;
 
-    public GameObject playerPrefab;
+    private GameObject playerPrefab;
 
     void Start()
     {
