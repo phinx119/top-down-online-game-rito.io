@@ -6,7 +6,12 @@ TagManager:
   tags:
   - Wall
   - Obstacle
+<<<<<<< HEAD
   - PowerUp
+=======
+  - Undefined
+  - Bullet
+>>>>>>> develop
   layers:
   - Default
   - TransparentFX
