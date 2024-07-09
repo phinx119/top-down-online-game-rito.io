@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,16 +7,19 @@ public class MainMenu : MonoBehaviour
     public InputField nameInputField;
     public Button playButton;
     public Text warningText;
+    public GameObject player;
+    public static GameObject playerPrefab;
 
     public static string playerName;
 
     void Start()
     {
+        playerPrefab = player;
         playButton.onClick.AddListener(PlayGame);
         warningText.gameObject.SetActive(false);
     }
 
-    public void PlayGame() 
+    public void PlayGame()
     {
         if (string.IsNullOrEmpty(nameInputField.text))
         {
@@ -27,9 +28,9 @@ public class MainMenu : MonoBehaviour
         }
         else
         {
-        playerName = nameInputField.text;
-        SceneManager.LoadSceneAsync(1);
-        }  
+            playerName = nameInputField.text;
+            SceneManager.LoadSceneAsync(2);
+        }
     }
 
     public void QuitGame()

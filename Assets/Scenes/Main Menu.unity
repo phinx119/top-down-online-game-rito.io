@@ -1388,6 +1388,7 @@ MonoBehaviour:
   nameInputField: {fileID: 719886283}
   playButton: {fileID: 874966205}
   warningText: {fileID: 229536834}
+  player: {fileID: 8300149528244436813, guid: dc20a977dbf49ff4f8b518ec783069e5, type: 3}
 --- !u!4 &800264332
 Transform:
   m_ObjectHideFlags: 0
