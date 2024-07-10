@@ -59,7 +59,7 @@ public class ExpSpawn : MonoBehaviour
         // Define the bounds for spawning
         float x = Random.Range(-10f, 10f);
         float y = Random.Range(-10f, 10f);
-        float z = Random.Range(-10f, 10f);
+        float z = -10f;
         return new Vector3(x, y, z);
     }
 }
