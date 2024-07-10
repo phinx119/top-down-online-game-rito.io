@@ -41,6 +41,7 @@ public class ExperienceManager : MonoBehaviour
         if (totalExperience >= nextLevelsExperience)
         {
             currentLevel++;
+            player.GetComponent<PlayerStats>().level = currentLevel;
             UpdateLevel();
 
             // Start level up sequence... Possibly vfx?
