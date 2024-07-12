@@ -163,12 +163,12 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 21
+    m_FontSize: 32
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 60
-    m_Alignment: 1
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -199,8 +199,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -111, y: 12}
-  m_SizeDelta: {x: 844.2638, y: 30}
+  m_AnchoredPosition: {x: -10, y: 18.407898}
+  m_SizeDelta: {x: 920.972, y: 63.1842}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &241547673
 GameObject:
@@ -1445,7 +1445,7 @@ GameObject:
   - component: {fileID: 800264332}
   - component: {fileID: 800264331}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: MenuManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1467,6 +1467,7 @@ MonoBehaviour:
   playButton: {fileID: 874966205}
   warningText: {fileID: 229536834}
   player: {fileID: 8300149528244436813, guid: dc20a977dbf49ff4f8b518ec783069e5, type: 3}
+  serverDropdown: {fileID: 975471766}
 --- !u!4 &800264332
 Transform:
   m_ObjectHideFlags: 0
