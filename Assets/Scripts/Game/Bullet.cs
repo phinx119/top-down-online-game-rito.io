@@ -12,7 +12,7 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         circleCollider = GetComponent<CircleCollider2D>();
-        StartCoroutine(EnableColliderAfterDelay(1f));
+        StartCoroutine(EnableColliderAfterDelay(0.2f));
         Destroy(this.gameObject, LifeTime);
     }
 
