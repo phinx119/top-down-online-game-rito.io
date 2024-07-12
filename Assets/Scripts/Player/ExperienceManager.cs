@@ -18,9 +18,11 @@ public class ExperienceManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI experienceText;
     [SerializeField] Image experienceFill;
 
+    LeaderboardManager leaderboardManager;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        leaderboardManager = FindObjectOfType<LeaderboardManager>();
         UpdateLevel();
     }
 
@@ -34,6 +36,7 @@ public class ExperienceManager : MonoBehaviour
         totalExperience = player.GetComponent<PlayerStats>().currExp;
         CheckForLevelUp();
         UpdateInterface();
+        leaderboardManager.AddOrUpdateEntry(player);
     }
 
     void CheckForLevelUp()
