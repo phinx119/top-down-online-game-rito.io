@@ -11,6 +11,7 @@ public class MainMenu : MonoBehaviour
     public static GameObject playerPrefab;
 
     public static string playerName;
+    public static string serverUrl;
 
     void Start()
     {
@@ -29,6 +30,7 @@ public class MainMenu : MonoBehaviour
         else
         {
             playerName = nameInputField.text;
+            serverUrl = nameInputField.text;
             SceneManager.LoadSceneAsync(2);
         }
     }
