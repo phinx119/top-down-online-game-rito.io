@@ -13,6 +13,7 @@ public class MainMenu : MonoBehaviour
 
     public static string playerName;
     public static string selectedServer;
+    public static string serverUrl;
 
     void Start()
     {
@@ -63,12 +64,14 @@ public class MainMenu : MonoBehaviour
     void HandleSEAServer()
     {
         Debug.Log("SEA Server selected.");
+        serverUrl = "ws://10.33.46.26:8181";
         SceneManager.LoadSceneAsync(2);
     }
 
     void HandleNAServer()
     {
         Debug.Log("NA Server selected.");
+        serverUrl = "wss://websocket-server-kutx.onrender.com";
         SceneManager.LoadSceneAsync(2);
     }
 
