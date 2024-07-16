@@ -19,6 +19,7 @@ public class ExperienceManager : MonoBehaviour
     [SerializeField] Image experienceFill;
 
     LeaderboardManager leaderboardManager;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
