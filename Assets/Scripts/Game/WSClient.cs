@@ -101,37 +101,69 @@ public class WSClient : MonoBehaviour
 
     private void HandleIncomingMessage(string message)
     {
-        
+        try
+        {
+            // Parse the incoming JSON message
+            var playersData = JsonUtility.FromJson<PlayersData>(message);
+
+            // Iterate through each player data in the JSON
+            foreach (var playerData in playersData.players)
+            {
+                string playerId = playerData.id;
+                Vector3 position = new Vector3(playerData.content.x, playerData.content.y, playerData.content.z);
+
+                // Check if the player with this id already exists
+                GameObject playerObject = GameObject.Find(playerId);
+
+                if (playerObject == null)
+                {
+                    // If the player does not exist, instantiate a new player
+                    GameObject newPlayer = Instantiate(playerEnemyPrefab, position, Quaternion.identity);
+                    newPlayer.name = playerId; // Set the player's name to their id
+                }
+                else
+                {
+                    // If the player exists, update its position
+                    playerObject.transform.position = position;
+                }
+            }
+        } catch (Exception e)
+        {
+            Debug.LogError($"Exception while handling incoming messages: {e.Message}");
+        }
     }
 
-    private Vector3? ParsePosition(string message)
+
+
+    private Vector3? ParsePosition(string xString, string yString, string zString)
     {
-        var parts = message.Split(',');
-        if (parts.Length == 3 &&
-            float.TryParse(parts[0], out var x) &&
-            float.TryParse(parts[1], out var y) &&
-            float.TryParse(parts[2], out var z))
-        {
-            return new Vector3(x, y, z);
-        }
-        return null;
+        float x = float.Parse(xString);
+        float y = float.Parse(yString);
+        float z = float.Parse(zString);
+
+        return new Vector3(x, y, z);
+    }
+
+    private Vector3? ParsePosition(PlayerContent playerContent)
+    {
+        return new Vector3(playerContent.x, playerContent.y, playerContent.z);
     }
 
     public async void SendPlayerPosition()
     {
-        if (player != null)
+        /*if (player != null)
         {
             var position = player.transform.position;
             var messageObject = new PlayerPositionMessage
             {
                 id = playerId,
-                content = new Position { x = position.x, y = position.y, z = position.z }
+                content = new PlayerContent { x = position.x, y = position.y, z = position.z }
             };
 
             var jsonMessage = JsonUtility.ToJson(messageObject);
 
             await SendMessage(jsonMessage);
-        }
+        }*/
     }
 
 
@@ -154,14 +186,20 @@ public class WSClient : MonoBehaviour
     }
 
     [Serializable]
-    public class PlayerPositionMessage
+    public class PlayersData
     {
-        public string id;
-        public Position content;
+        public PlayerData[] players;
     }
 
     [Serializable]
-    public class Position
+    public class PlayerData
+    {
+        public string id;
+        public PlayerContent content;
+    }
+
+    [Serializable]
+    public class PlayerContent
     {
         public float x;
         public float y;
