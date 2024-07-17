@@ -14,4 +14,6 @@ public class PlayerStats : MonoBehaviour
 
     public int damage;
     public int speed;
+
+    public int id;
 }

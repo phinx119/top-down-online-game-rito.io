@@ -2105,7 +2105,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &149444747
 Transform:
   m_ObjectHideFlags: 0
@@ -3145,12 +3145,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc20a977dbf49ff4f8b518ec783069e5, type: 3}
---- !u!1 &187377879 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8300149528244436813, guid: dc20a977dbf49ff4f8b518ec783069e5,
-    type: 3}
-  m_PrefabInstance: {fileID: 187377878}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &192580025
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -77130,9 +77124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fdc907d7a07064418dc6637c39dbe17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  url: wss://websocket-server-kutx.onrender.com
-  player: {fileID: 2005020906}
-  clone: {fileID: 187377879}
+  url: ws://127.0.0.1:8181
   sendInterval: 0.001
 --- !u!4 &954496081
 Transform:
@@ -114602,12 +114594,12 @@ PrefabInstance:
     - target: {fileID: 3654717243553204155, guid: dc20a977dbf49ff4f8b518ec783069e5,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3654717243553204155, guid: dc20a977dbf49ff4f8b518ec783069e5,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8300149528244436813, guid: dc20a977dbf49ff4f8b518ec783069e5,
         type: 3}
@@ -114617,7 +114609,7 @@ PrefabInstance:
     - target: {fileID: 8300149528244436813, guid: dc20a977dbf49ff4f8b518ec783069e5,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}

@@ -9,6 +9,7 @@ public class PlayerHealth : MonoBehaviour
     private HealthBar healthBar;
 
     public float health, maxHealth = 20;
+    public bool isPlayerEnemy = false;
 
     private void Awake()
     {
@@ -30,7 +31,7 @@ public class PlayerHealth : MonoBehaviour
             {
                 float bulletDamage = bullet.bulletDamage;
                 Destroy(collider.gameObject);
-                takeDamage(bulletDamage, collider.gameObject);
+                if (!isPlayerEnemy) takeDamage(bulletDamage, collider.gameObject);
             }
         }
     }

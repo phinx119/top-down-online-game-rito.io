@@ -10,13 +10,16 @@ public class WSClient : MonoBehaviour
 {
     private ClientWebSocket websocket;
     public string url = "wss://websocket-server-kutx.onrender.com";
+    public float sendInterval = 0.1f;
     public GameObject player;
-    public GameObject clone;
-    public float sendInterval = 0.1f; // Interval in seconds
+    public string playerId;
+    public GameObject playerEnemyPrefab;
 
     async void Start()
     {
         string inputUrl = MainMenu.serverUrl;
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerId = MainMenu.id;
         if (!String.IsNullOrEmpty(inputUrl))
             url = inputUrl;
 
@@ -98,17 +101,7 @@ public class WSClient : MonoBehaviour
 
     private void HandleIncomingMessage(string message)
     {
-        // Assuming the message format is "x,y,z"
-        var position = ParsePosition(message);
-        if (position.HasValue)
-        {
-            clone.transform.position = position.Value;
-            Debug.Log("Clone position updated: " + position.Value);
-        }
-        else
-        {
-            Debug.LogError("Failed to parse position message: " + message);
-        }
+        
     }
 
     private Vector3? ParsePosition(string message)
@@ -129,10 +122,19 @@ public class WSClient : MonoBehaviour
         if (player != null)
         {
             var position = player.transform.position;
-            var message = $"{position.x},{position.y},{position.z}";
-            await SendMessage(message);
+            var messageObject = new PlayerPositionMessage
+            {
+                id = playerId,
+                content = new Position { x = position.x, y = position.y, z = position.z }
+            };
+
+            var jsonMessage = JsonUtility.ToJson(messageObject);
+
+            await SendMessage(jsonMessage);
         }
     }
+
+
 
     private IEnumerator SendPlayerPositionAtIntervals()
     {
@@ -150,4 +152,20 @@ public class WSClient : MonoBehaviour
             websocket.Abort();
         }
     }
+
+    [Serializable]
+    public class PlayerPositionMessage
+    {
+        public string id;
+        public Position content;
+    }
+
+    [Serializable]
+    public class Position
+    {
+        public float x;
+        public float y;
+        public float z;
+    }
+
 }

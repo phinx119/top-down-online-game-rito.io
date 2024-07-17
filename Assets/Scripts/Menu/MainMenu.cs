@@ -79,6 +79,7 @@ public class MainMenu : MonoBehaviour
     void HandleEUServer()
     {
         Debug.Log("EU Server selected.");
+        serverUrl = playerName;
         SceneManager.LoadSceneAsync(2);
     }
 }
