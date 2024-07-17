@@ -14,6 +14,7 @@ public class MainMenu : MonoBehaviour
     public static string playerName;
     public static string selectedServer;
     public static string serverUrl;
+    public static string id = System.Guid.NewGuid().ToString();
 
     void Start()
     {
