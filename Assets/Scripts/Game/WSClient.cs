@@ -109,22 +109,25 @@ public class WSClient : MonoBehaviour
             // Iterate through each player data in the JSON
             foreach (var playerData in playersData.players)
             {
-                string playerId = playerData.id;
-                Vector3 position = new Vector3(playerData.content.x, playerData.content.y, playerData.content.z);
-
-                // Check if the player with this id already exists
-                GameObject playerObject = GameObject.Find(playerId);
-
-                if (playerObject == null)
+                string playerEnemyId = playerData.id;
+                if (playerId != playerEnemyId)
                 {
-                    // If the player does not exist, instantiate a new player
-                    GameObject newPlayer = Instantiate(playerEnemyPrefab, position, Quaternion.identity);
-                    newPlayer.name = playerId; // Set the player's name to their id
-                }
-                else
-                {
-                    // If the player exists, update its position
-                    playerObject.transform.position = position;
+                    Vector3 position = new Vector3(playerData.content.x, playerData.content.y, playerData.content.z);
+
+                    // Check if the player with this id already exists
+                    GameObject playerObject = GameObject.Find(playerEnemyId);
+
+                    if (playerObject == null)
+                    {
+                        // If the player does not exist, instantiate a new player
+                        GameObject newPlayer = Instantiate(playerEnemyPrefab, position, Quaternion.identity);
+                        newPlayer.name = playerEnemyId; // Set the player's name to their id
+                    }
+                    else
+                    {
+                        // If the player exists, update its position
+                        playerObject.transform.position = position;
+                    }
                 }
             }
         } catch (Exception e)
@@ -151,10 +154,10 @@ public class WSClient : MonoBehaviour
 
     public async void SendPlayerPosition()
     {
-        /*if (player != null)
+        if (player != null)
         {
             var position = player.transform.position;
-            var messageObject = new PlayerPositionMessage
+            var messageObject = new PlayerData
             {
                 id = playerId,
                 content = new PlayerContent { x = position.x, y = position.y, z = position.z }
@@ -163,7 +166,7 @@ public class WSClient : MonoBehaviour
             var jsonMessage = JsonUtility.ToJson(messageObject);
 
             await SendMessage(jsonMessage);
-        }*/
+        }
     }
 
 
