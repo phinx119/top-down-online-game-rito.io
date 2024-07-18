@@ -19,6 +19,16 @@ public class ExpSpawn : MonoBehaviour
         EnsurePoolSize();
     }
 
+    public void SpawnObjectsAtPosition(Vector3 position, int count)
+    {
+        Debug.Log("Spawning " + count + " objects at position: " + position);
+        for (int i = 0; i < count; i++)
+        {
+            GameObject obj = Instantiate(prefab, position, Quaternion.identity);
+            Debug.Log("Spawned object at position: " + position);
+        }
+    }
+
     private void SpawnAllObjects()
     {
         foreach (MonoBehaviour obj in objectPool.GetAllPooledObjects())

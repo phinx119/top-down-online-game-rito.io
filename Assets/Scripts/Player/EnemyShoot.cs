@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerShoot : MonoBehaviour
+public class PlayerEnemyShoot : MonoBehaviour
 {
     public GameObject bullet;
     public Transform firePoint;
@@ -31,7 +31,7 @@ public class PlayerShoot : MonoBehaviour
         GameObject nearestEnemy = null;
         float nearestDistance = Mathf.Infinity;
 
-        GameObject[] players = GameObject.FindGameObjectsWithTag("PlayerEnemy");
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
 
         foreach (GameObject player in players)
         {
