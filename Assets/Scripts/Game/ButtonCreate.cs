@@ -98,6 +98,9 @@ public class ButtonCreate : MonoBehaviour
             case 6:
                 ButtonHandler.BuffDamage();
                 break;
+            case 7:
+                ButtonHandler.BuffLongerRange();
+                break;
         }
 
         DestroyAllButtons();

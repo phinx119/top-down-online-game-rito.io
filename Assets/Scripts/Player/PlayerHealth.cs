@@ -7,6 +7,7 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField]
     private HealthBar healthBar;
+    public GameObject player;
 
     public float health, maxHealth = 20;
     public bool isPlayerEnemy = false;
@@ -18,8 +19,15 @@ public class PlayerHealth : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         health = maxHealth;
         healthBar.updateHealthBar(health, maxHealth);
+    }
+
+    void Update()
+    {
+        health = player.GetComponent<PlayerStats>().currHealth;
+        maxHealth = player.GetComponent<PlayerStats>().maxHealth;
     }
 
     void OnTriggerEnter2D(Collider2D collider)
@@ -50,6 +58,10 @@ public class PlayerHealth : MonoBehaviour
     {
         Destroy(bullet);
         Destroy(gameObject);
-        SceneManager.LoadSceneAsync(0);
+
+        if (gameObject.CompareTag("Player"))
+        {
+            SceneManager.LoadSceneAsync(0);
+        }
     }
 }

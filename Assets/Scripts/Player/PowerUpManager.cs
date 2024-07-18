@@ -12,7 +12,8 @@ public class PowerUpManager : MonoBehaviour
         SpeedBoost,
         ShotgunAmmo,
         IncreaseDrop,
-        DrawnHealth
+        DrawnHealth,
+        LongerRange
         // Add more PowerUp types as needed
     }
 
@@ -86,6 +87,9 @@ public class PowerUpManager : MonoBehaviour
             case PowerUpType.DrawnHealth: 
                 // Get health when deal damage
                 break;
+            case PowerUpType.LongerRange:
+                player.GetComponent<PlayerStats>().range += PowerUp.Value;
+                break;
         }
     }
 
@@ -112,6 +116,9 @@ public class PowerUpManager : MonoBehaviour
                 // Increase speed
                 break;
             case PowerUpType.DrawnHealth:
+                // Get health when deal damage
+                break;
+            case PowerUpType.LongerRange:
                 // Get health when deal damage
                 break;
         }
