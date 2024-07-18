@@ -50,6 +50,10 @@ public class PlayerHealth : MonoBehaviour
     {
         Destroy(bullet);
         Destroy(gameObject);
-        SceneManager.LoadSceneAsync(0);
+
+        if (gameObject.CompareTag("Player"))
+        {
+            SceneManager.LoadSceneAsync(0);
+        }
     }
 }
