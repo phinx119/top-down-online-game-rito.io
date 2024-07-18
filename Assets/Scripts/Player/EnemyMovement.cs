@@ -1,7 +1,6 @@
 using UnityEngine;
-using UnityEngine.UI;
 
-public class Player : MonoBehaviour
+public class EnemyMovement : MonoBehaviour
 {
     public float moveSpeed;
 
@@ -10,7 +9,7 @@ public class Player : MonoBehaviour
     private Animator animator;
     private GameObject player;
 
-    Vector2 movement;
+    Vector2 lastPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -19,40 +18,48 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
+        lastPosition = rb.position;
     }
 
     // Update is called once per frame
     void Update()
     {
         moveSpeed = player.GetComponent<PlayerStats>().speed;
-        // Input
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
 
-        if (movement.x < 0)
+        // Get the player's current position
+        Vector2 currentPosition = rb.position;
+        Vector2 positionDelta = currentPosition - lastPosition;
+
+        // Set animator parameters based on position change
+        animator.SetFloat("Horizontal", positionDelta.x);
+        animator.SetFloat("Vertical", positionDelta.y);
+        animator.SetFloat("Speed", positionDelta.sqrMagnitude);
+
+        // Flip sprite based on movement direction
+        if (positionDelta.x < 0)
         {
             spriteRenderer.flipX = true;
         }
-        else if (movement.x > 0)
+        else if (positionDelta.x > 0)
         {
             spriteRenderer.flipX = false;
         }
 
-        animator.SetFloat("Horizontal", movement.x);
-        animator.SetFloat("Vertical", movement.y);
-        animator.SetFloat("Speed", movement.sqrMagnitude);
+        // Update last position
+        lastPosition = currentPosition;
     }
 
     private void FixedUpdate()
     {
         // Movement
+        Vector2 movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         if (movement.x == 0 || movement.y == 0)
         {
             rb.velocity = movement * moveSpeed;
         }
         else
         {
-            rb.velocity = movement * (moveSpeed / squareRoot(2));
+            rb.velocity = movement * (moveSpeed / Mathf.Sqrt(2));
         }
     }
 

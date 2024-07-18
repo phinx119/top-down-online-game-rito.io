@@ -44,6 +44,20 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    private void SpawnExperienceObjects()
+    {
+        ExpSpawn expSpawn = FindObjectOfType<ExpSpawn>();
+        if (expSpawn != null)
+        {
+            Debug.Log("Spawning experience objects.");
+            expSpawn.SpawnObjectsAtPosition(transform.position, 5);
+        }
+        else
+        {
+            Debug.LogError("ExpSpawn is null.");
+        }
+    }
+
     void takeDamage(float bulletDamage, GameObject bullet)
     {
         health -= bulletDamage;
@@ -56,7 +70,9 @@ public class PlayerHealth : MonoBehaviour
 
     void playerDie(GameObject bullet)
     {
+        Debug.Log("Player died.");
         Destroy(bullet);
+        SpawnExperienceObjects();
         Destroy(gameObject);
 
         if (gameObject.CompareTag("Player"))
