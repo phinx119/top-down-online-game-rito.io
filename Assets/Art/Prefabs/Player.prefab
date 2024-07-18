@@ -266,8 +266,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 7165710627369696105}
+  player: {fileID: 0}
   health: 0
   maxHealth: 20
+  isPlayerEnemy: 0
 --- !u!50 &1549293859449419579
 Rigidbody2D:
   serializedVersion: 4
@@ -364,6 +366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  player: {fileID: 0}
 --- !u!114 &6310259782534139011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -377,12 +380,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 0
-  currHealth: 0
-  maxHealth: 0
+  currHealth: 20
+  maxHealth: 20
   currExp: 0
   maxExp: 0
-  damage: 0
-  speed: 0
+  damage: 2
+  speed: 5
+  id: 0
 --- !u!114 &4696537597441449722
 MonoBehaviour:
   m_ObjectHideFlags: 0

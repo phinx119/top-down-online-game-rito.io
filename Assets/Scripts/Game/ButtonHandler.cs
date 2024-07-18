@@ -17,7 +17,7 @@ public class ButtonHandler : MonoBehaviour
     {
         if (powerUpManager != null)
         {
-            PowerUpManager.PowerUp damagePowerUp = new PowerUpManager.PowerUp(PowerUpManager.PowerUpType.IncreaseDamage, 10);
+            PowerUpManager.PowerUp damagePowerUp = new PowerUpManager.PowerUp(PowerUpManager.PowerUpType.IncreaseDamage, 3);
             powerUpManager.ApplyPowerUp(damagePowerUp);
             Debug.Log("PowerUp applied successfully.");
             Debug.Log("Player's damage: " + player.GetComponent<PlayerStats>().damage);
@@ -62,7 +62,7 @@ public class ButtonHandler : MonoBehaviour
     {
         if (powerUpManager != null)
         {
-            PowerUpManager.PowerUp speedPowerUp = new PowerUpManager.PowerUp(PowerUpManager.PowerUpType.SpeedBoost, 10);
+            PowerUpManager.PowerUp speedPowerUp = new PowerUpManager.PowerUp(PowerUpManager.PowerUpType.SpeedBoost, 5);
             powerUpManager.ApplyPowerUp(speedPowerUp);
             Debug.Log("PowerUp applied successfully.");
             Debug.Log("Player's speed: " + player.GetComponent<PlayerStats>().speed);
@@ -107,7 +107,7 @@ public class ButtonHandler : MonoBehaviour
     {
         if (powerUpManager != null)
         {
-            PowerUpManager.PowerUp drawnHealthPowerUp = new PowerUpManager.PowerUp(PowerUpManager.PowerUpType.DrawnHealth, 10);
+            PowerUpManager.PowerUp drawnHealthPowerUp = new PowerUpManager.PowerUp(PowerUpManager.PowerUpType.DrawnHealth, 2);
             powerUpManager.ApplyPowerUp(drawnHealthPowerUp);
             Debug.Log("PowerUp applied successfully.");
             Debug.Log("Player's current Health: " + player.GetComponent<PlayerStats>().currHealth);

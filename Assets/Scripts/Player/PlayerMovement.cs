@@ -3,11 +3,12 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    public float moveSpeed = 5f;
+    public float moveSpeed;
 
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
     private Animator animator;
+    public GameObject player;
 
     Vector2 movement;
 
@@ -17,11 +18,13 @@ public class Player : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
+        moveSpeed = player.GetComponent<PlayerStats>().speed;
         // Input
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
