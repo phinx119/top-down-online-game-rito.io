@@ -66,7 +66,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &92702374943482383
 RectTransform:
   m_ObjectHideFlags: 0
@@ -266,6 +266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 7165710627369696105}
+  player: {fileID: 0}
   health: 0
   maxHealth: 20
   isPlayerEnemy: 0
@@ -365,6 +366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  player: {fileID: 0}
 --- !u!114 &6310259782534139011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -378,12 +380,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 0
-  currHealth: 0
-  maxHealth: 0
+  currHealth: 20
+  maxHealth: 20
   currExp: 0
   maxExp: 0
-  damage: 0
-  speed: 0
+  damage: 2
+  range: 1
+  speed: 5
   id: 0
 --- !u!114 &4696537597441449722
 MonoBehaviour:
@@ -419,6 +422,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1695373701389947380}
     m_Modifications:
+    - target: {fileID: 205535805009301188, guid: 9e858d28d7e2c824fad7b4e1b435f5b3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1540111618564873443, guid: 9e858d28d7e2c824fad7b4e1b435f5b3,
         type: 3}
       propertyPath: m_AnchoredPosition.y

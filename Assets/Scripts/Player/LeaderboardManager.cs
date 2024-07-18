@@ -38,7 +38,7 @@ public class LeaderboardManager : MonoBehaviour
     {
         PlayerStats stats = player.GetComponent<PlayerStats>();
         PlayerName playerName = player.GetComponent<PlayerName>();
-        LeaderboardEntry entry = leaderboardEntries.Find(e => e.player == player);
+        LeaderboardEntry entry = leaderboardEntries.Find(e => e.id == player.name);
 
         if (entry == null)
         {
@@ -46,7 +46,8 @@ public class LeaderboardManager : MonoBehaviour
             {
                 player = player,
                 playerName = playerName != null ? playerName.nameText.text : "Unknown",
-                totalExperience = stats.currExp
+                totalExperience = stats.currExp,
+                id = player.name,
             };
             leaderboardEntries.Add(entry);
         }
@@ -65,4 +66,5 @@ public class LeaderboardEntry
     public GameObject player;
     public string playerName;
     public int totalExperience;
+    public string id = "Player";
 }

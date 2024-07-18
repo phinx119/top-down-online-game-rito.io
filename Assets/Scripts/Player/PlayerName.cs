@@ -11,4 +11,9 @@ public class PlayerName : MonoBehaviour
     {
         nameText.text = MainMenu.playerName;
     }
+
+    public void UpdateName(string name)
+    {
+        nameText.text = name;
+    }
 }

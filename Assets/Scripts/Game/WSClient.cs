@@ -131,7 +131,8 @@ public class WSClient : MonoBehaviour
                         // If the player does not exist, instantiate a new player
                         GameObject newPlayer = Instantiate(playerEnemyPrefab, position, Quaternion.identity);
                         newPlayer.name = playerEnemyId; // Set the player's name to their id
-
+                        newPlayer.GetComponent<PlayerName>().UpdateName(playerData.content.name);
+                        
                         leaderboardManager.AddOrUpdateEntry(newPlayer);
                     }
                     else
