@@ -76944,6 +76944,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1fc3cec8ea048e84595d26f1201a829f, type: 3}
   - {fileID: 21300000, guid: 6fb05ec4d846cfc49bbed0d47cccd503, type: 3}
   - {fileID: 21300000, guid: 2afe9a6c3760b7d42b74e9d2892a1910, type: 3}
+  - {fileID: 21300000, guid: 178d3a8660073d34b9b961f58dde2953, type: 3}
   ButtonHandler: {fileID: 928531317}
   player: {fileID: 0}
 --- !u!114 &928531319
@@ -115314,12 +115315,12 @@ PrefabInstance:
     - target: {fileID: 3654717243553204155, guid: dc20a977dbf49ff4f8b518ec783069e5,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3654717243553204155, guid: dc20a977dbf49ff4f8b518ec783069e5,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8300149528244436813, guid: dc20a977dbf49ff4f8b518ec783069e5,
         type: 3}
@@ -115329,7 +115330,7 @@ PrefabInstance:
     - target: {fileID: 8300149528244436813, guid: dc20a977dbf49ff4f8b518ec783069e5,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}

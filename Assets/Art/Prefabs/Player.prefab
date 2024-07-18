@@ -385,6 +385,7 @@ MonoBehaviour:
   currExp: 0
   maxExp: 0
   damage: 2
+  range: 1
   speed: 5
   id: 0
 --- !u!114 &4696537597441449722

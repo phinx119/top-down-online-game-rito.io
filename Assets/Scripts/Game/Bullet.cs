@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public float bulletDamage = 2f;
-    public float LifeTime = 1.5f;
+    public float LifeTime = 1f;
 
     private CircleCollider2D circleCollider;
     public GameObject player;
@@ -21,6 +21,7 @@ public class Bullet : MonoBehaviour
     void Update()
     {
         bulletDamage = player.GetComponent<PlayerStats>().damage;
+        LifeTime = player.GetComponent<PlayerStats>().range;
     }
 
     private IEnumerator EnableColliderAfterDelay(float delay)

@@ -13,6 +13,7 @@ public class PlayerStats : MonoBehaviour
     public int maxExp;
 
     public int damage;
+    public int range;
     public int speed;
 
     public int id;

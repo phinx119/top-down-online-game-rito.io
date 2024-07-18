@@ -88,6 +88,21 @@ public class ButtonHandler : MonoBehaviour
         }
     }
 
+    public void BuffLongerRange()
+    {
+        if (powerUpManager != null)
+        {
+            PowerUpManager.PowerUp longerRangePowerUp = new PowerUpManager.PowerUp(PowerUpManager.PowerUpType.LongerRange, 1);
+            powerUpManager.ApplyPowerUp(longerRangePowerUp);
+            Debug.Log("PowerUp applied successfully.");
+            Debug.Log("Bullet Range: " + player.GetComponent<PlayerStats>().range);
+        }
+        else
+        {
+            Debug.LogError("PowerUpManager is not initialized.");
+        }
+    }
+
     public void BuffIncreaseDrop()
     {
         if (powerUpManager != null)
