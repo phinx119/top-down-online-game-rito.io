@@ -11,15 +11,24 @@ public class WSClient : MonoBehaviour
     private ClientWebSocket websocket;
     public string url = "wss://websocket-server-kutx.onrender.com";
     public float sendInterval = 0.1f;
-    public GameObject player;
-    public string playerId;
+    private GameObject player;
+    private string playerId;
+    private string playerName;
     public GameObject playerEnemyPrefab;
+    public GameObject leaderboard;
+    private LeaderboardManager leaderboardManager;
+    private PlayerStats playerStats;
 
     async void Start()
     {
         string inputUrl = MainMenu.serverUrl;
         player = GameObject.FindGameObjectWithTag("Player");
         playerId = MainMenu.id;
+        playerName = MainMenu.playerName;
+
+        playerStats = player.GetComponent<PlayerStats>();
+        leaderboardManager = leaderboard.GetComponent<LeaderboardManager>();
+
         if (!String.IsNullOrEmpty(inputUrl))
             url = inputUrl;
 
@@ -122,11 +131,16 @@ public class WSClient : MonoBehaviour
                         // If the player does not exist, instantiate a new player
                         GameObject newPlayer = Instantiate(playerEnemyPrefab, position, Quaternion.identity);
                         newPlayer.name = playerEnemyId; // Set the player's name to their id
+
+                        leaderboardManager.AddOrUpdateEntry(newPlayer);
                     }
                     else
                     {
                         // If the player exists, update its position
                         playerObject.transform.position = position;
+                        playerObject.GetComponent<PlayerStats>().currExp = playerData.content.exp;
+
+                        leaderboardManager.AddOrUpdateEntry(playerObject);
                     }
                 }
             }
@@ -160,7 +174,13 @@ public class WSClient : MonoBehaviour
             var messageObject = new PlayerData
             {
                 id = playerId,
-                content = new PlayerContent { x = position.x, y = position.y, z = position.z }
+                content = new PlayerContent {
+                    x = position.x,
+                    y = position.y,
+                    z = position.z,
+                    name = playerName,
+                    exp = playerStats.currExp,
+                }
             };
 
             var jsonMessage = JsonUtility.ToJson(messageObject);
@@ -207,6 +227,8 @@ public class WSClient : MonoBehaviour
         public float x;
         public float y;
         public float z;
+        public string name;
+        public int exp;
     }
 
 }

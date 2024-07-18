@@ -77126,10 +77126,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   url: ws://127.0.0.1:8181
   sendInterval: 0.001
-  player: {fileID: 0}
-  playerId: 
   playerEnemyPrefab: {fileID: 8300149528244436813, guid: b2ff6c23d6e5192429e1865520d5b03d,
     type: 3}
+  leaderboard: {fileID: 2124135990}
 --- !u!4 &954496081
 Transform:
   m_ObjectHideFlags: 0
