@@ -7,7 +7,7 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField]
     private HealthBar healthBar;
-    public GameObject player;
+    private GameObject player;
 
     public float health, maxHealth = 20;
     public bool isPlayerEnemy = false;

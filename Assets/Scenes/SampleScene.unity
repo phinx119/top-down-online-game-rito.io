@@ -1697,17 +1697,22 @@ PrefabInstance:
     - target: {fileID: 3654717243553204155, guid: dc20a977dbf49ff4f8b518ec783069e5,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3654717243553204155, guid: dc20a977dbf49ff4f8b518ec783069e5,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8300149528244436813, guid: dc20a977dbf49ff4f8b518ec783069e5,
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8300149528244436813, guid: dc20a977dbf49ff4f8b518ec783069e5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8443157768527336661, guid: dc20a977dbf49ff4f8b518ec783069e5, type: 3}
