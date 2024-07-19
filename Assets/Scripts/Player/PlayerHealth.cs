@@ -8,6 +8,8 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField]
     private HealthBar healthBar;
     public GameObject player;
+    public GameObject expSpawnObject;
+    private ExpSpawn expSpawn;
 
     public float health, maxHealth = 20;
     public bool isPlayerEnemy = false;
@@ -15,11 +17,13 @@ public class PlayerHealth : MonoBehaviour
     private void Awake()
     {
         healthBar = GetComponentInChildren<HealthBar>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        expSpawnObject = GameObject.FindGameObjectWithTag("ExpSpawner");
+        expSpawn = expSpawnObject.GetComponent<ExpSpawn>();
     }
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
         health = maxHealth;
         healthBar.updateHealthBar(health, maxHealth);
     }
@@ -57,6 +61,8 @@ public class PlayerHealth : MonoBehaviour
     void playerDie(GameObject bullet)
     {
         Destroy(bullet);
+        expSpawn.SpawnExperience(transform.position);
+
         Destroy(gameObject);
 
         if (gameObject.CompareTag("Player"))

@@ -10,6 +10,7 @@ TagManager:
   - Bullet
   - PowerUpUI
   - PlayerEnemy
+  - ExpSpawner
   layers:
   - Default
   - TransparentFX

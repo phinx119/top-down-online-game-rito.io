@@ -5,7 +5,7 @@ using UnityEngine;
 public class ExpSpawn : MonoBehaviour
 {
     public GameObject prefab;
-    public int poolSize = 30;
+    public int poolSize = 40;
     private ObjectPool<MonoBehaviour> objectPool;
 
     void Start()
@@ -61,5 +61,15 @@ public class ExpSpawn : MonoBehaviour
         float y = Random.Range(-10f, 10f);
         float z = 0;
         return new Vector3(x, y, z);
+    }
+
+    public void SpawnExperience(Vector3 position)
+    {
+        MonoBehaviour obj = objectPool.GetPooledObject();
+        if (obj != null)
+        {
+            obj.transform.position = position;
+            obj.gameObject.SetActive(true);
+        }
     }
 }
