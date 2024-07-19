@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 7819931135067184771, guid: 220f493ec38e8ab439134e4c6b714125, type: 3}
   firePoint: {fileID: 517327593101531818}
-  timeBtwFire: 0.2
+  shootInterval: 0.2
   bulletForce: 9
   detectionRange: 10
 --- !u!1 &1827130243550489911
@@ -254,7 +254,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!114 &613919726389096632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,7 +268,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 7165710627369696105}
-  player: {fileID: 0}
   health: 0
   maxHealth: 20
   isPlayerEnemy: 0
@@ -368,7 +367,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  player: {fileID: 0}
 --- !u!114 &6310259782534139011
 MonoBehaviour:
   m_ObjectHideFlags: 0
