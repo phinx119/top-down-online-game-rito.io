@@ -62,9 +62,9 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("Player died.");
         Destroy(bullet);
         Destroy(gameObject);
-
+        SceneManager.LoadSceneAsync(0);
         multiplayerManager.GetComponent<WSClient>().Abort();
 
-        SceneManager.LoadSceneAsync(0);
+        
     }
 }
