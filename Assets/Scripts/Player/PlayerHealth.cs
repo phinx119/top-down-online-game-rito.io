@@ -10,6 +10,8 @@ public class PlayerHealth : MonoBehaviour
     public float health, maxHealth = 20;
     public bool isPlayerEnemy = false;
 
+    public GameObject multiplayerManager;
+
     private void Awake()
     {
         healthBar = GetComponentInChildren<HealthBar>();
@@ -59,8 +61,9 @@ public class PlayerHealth : MonoBehaviour
     {
         Debug.Log("Player died.");
         Destroy(bullet);
-
         Destroy(gameObject);
+
+        multiplayerManager.GetComponent<WSClient>().Abort();
 
         SceneManager.LoadSceneAsync(0);
     }

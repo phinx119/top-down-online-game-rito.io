@@ -208,11 +208,31 @@ public class WSClient : MonoBehaviour
 
     private void OnApplicationQuit()
     {
+        Abort();
+    }
+
+    public async void Abort()
+    {
         if (websocket != null)
         {
-            websocket.Abort();
+            try
+            {
+                if (websocket.State == WebSocketState.Open)
+                {
+                    await websocket.CloseAsync(WebSocketCloseStatus.NormalClosure, "Client disconnect", CancellationToken.None);
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"Exception while closing WebSocket: {e.Message}");
+            }
+            finally
+            {
+                websocket.Dispose();
+            }
         }
     }
+
 
     [Serializable]
     public class PlayersData
