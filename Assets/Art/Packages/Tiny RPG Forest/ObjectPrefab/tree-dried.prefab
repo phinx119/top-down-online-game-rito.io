@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7611531179209378895}
   - component: {fileID: 1611264853605192274}
-  - component: {fileID: 1390267017763187182}
+  - component: {fileID: 6066282520660414439}
   m_Layer: 0
   m_Name: tree-dried
   m_TagString: Untagged
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: db07cc93e21f1457d9a1364618027fbb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -84,9 +84,9 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!58 &1390267017763187182
-CircleCollider2D:
+  m_SpriteSortPoint: 1
+--- !u!70 &6066282520660414439
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -117,6 +117,6 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.4086148}
-  serializedVersion: 2
-  m_Radius: 0.18376473
+  m_Offset: {x: 0.014676456, y: -0.42888245}
+  m_Size: {x: 0.36531058, y: 0.20223823}
+  m_Direction: 1
