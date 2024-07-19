@@ -25,7 +25,10 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        moveSpeed = player.GetComponent<PlayerStats>().speed;
+        if (player != null)
+        {
+            moveSpeed = player.GetComponent<PlayerStats>().speed;
+        }
 
         // Get the player's current position
         Vector2 currentPosition = rb.position;

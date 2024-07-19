@@ -26,7 +26,10 @@ public class WSClient : MonoBehaviour
         playerId = MainMenu.id;
         playerName = MainMenu.playerName;
 
-        playerStats = player.GetComponent<PlayerStats>();
+        if (player != null)
+        {
+            playerStats = player.GetComponent<PlayerStats>();
+        }
         leaderboardManager = leaderboard.GetComponent<LeaderboardManager>();
 
         if (!String.IsNullOrEmpty(inputUrl))
@@ -132,7 +135,7 @@ public class WSClient : MonoBehaviour
                         GameObject newPlayer = Instantiate(playerEnemyPrefab, position, Quaternion.identity);
                         newPlayer.name = playerEnemyId; // Set the player's name to their id
                         newPlayer.GetComponent<PlayerName>().UpdateName(playerData.content.name);
-                        
+
                         leaderboardManager.AddOrUpdateEntry(newPlayer);
                     }
                     else
@@ -145,7 +148,8 @@ public class WSClient : MonoBehaviour
                     }
                 }
             }
-        } catch (Exception e)
+        }
+        catch (Exception e)
         {
             Debug.LogError($"Exception while handling incoming messages: {e.Message}");
         }
@@ -175,7 +179,8 @@ public class WSClient : MonoBehaviour
             var messageObject = new PlayerData
             {
                 id = playerId,
-                content = new PlayerContent {
+                content = new PlayerContent
+                {
                     x = position.x,
                     y = position.y,
                     z = position.z,

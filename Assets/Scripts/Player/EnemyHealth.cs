@@ -1,7 +1,6 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class PlayerHealth : MonoBehaviour
+public class EnemyHealth : MonoBehaviour
 {
     [SerializeField]
     private HealthBar healthBar;
@@ -17,7 +16,7 @@ public class PlayerHealth : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("PlayerEnemy");
         health = maxHealth;
         healthBar.updateHealthBar(health, maxHealth);
     }
@@ -45,11 +44,25 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    private void SpawnExperienceObjects()
+    {
+        ExpSpawn expSpawn = FindObjectOfType<ExpSpawn>();
+        if (expSpawn != null)
+        {
+            Debug.Log("Spawning experience objects.");
+            expSpawn.SpawnObjectsAtPosition(transform.position, 5);
+        }
+        else
+        {
+            Debug.LogError("ExpSpawn is null.");
+        }
+    }
+
     void takeDamage(float bulletDamage, GameObject bullet)
     {
         health -= bulletDamage;
         healthBar.updateHealthBar(health, maxHealth);
-        if (health <= 0 && !isPlayerEnemy)
+        if (health <= 0)
         {
             playerDie(bullet);
         }
@@ -59,9 +72,8 @@ public class PlayerHealth : MonoBehaviour
     {
         Debug.Log("Player died.");
         Destroy(bullet);
+        SpawnExperienceObjects();
 
         Destroy(gameObject);
-
-        SceneManager.LoadSceneAsync(0);
     }
 }
