@@ -10,6 +10,7 @@ public class EnemyMovement : MonoBehaviour
     private GameObject player;
 
     Vector2 lastPosition;
+    Vector2 positionDelta;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +29,7 @@ public class EnemyMovement : MonoBehaviour
 
         // Get the player's current position
         Vector2 currentPosition = rb.position;
-        Vector2 positionDelta = currentPosition - lastPosition;
+        positionDelta = currentPosition - lastPosition;
 
         // Set animator parameters based on position change
         animator.SetFloat("Horizontal", positionDelta.x);
@@ -51,28 +52,13 @@ public class EnemyMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // Movement
-        Vector2 movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        if (movement.x == 0 || movement.y == 0)
+        if (positionDelta.x == 0 || positionDelta.y == 0)
         {
-            rb.velocity = movement * moveSpeed;
+            rb.velocity = positionDelta * moveSpeed;
         }
         else
         {
-            rb.velocity = movement * (moveSpeed / Mathf.Sqrt(2));
+            rb.velocity = positionDelta * (moveSpeed / Mathf.Sqrt(2));
         }
-    }
-
-    static float squareRoot(int number)
-    {
-        float temp;
-        float sr = number / 2;
-
-        do
-        {
-            temp = sr;
-            sr = (temp + (number / temp)) / 2;
-        } while ((temp - sr) != 0);
-        return sr;
     }
 }
