@@ -6,15 +6,15 @@ public class PlayerStats : MonoBehaviour
 {
     public int level;
 
-    public int currHealth;
-    public int maxHealth;
+    public float currHealth;
+    public float maxHealth;
 
     public int currExp;
     public int maxExp;
 
-    public int damage;
-    public int range;
-    public int speed;
+    public float damage;
+    public float range;
+    public float speed;
 
     public int id;
 }

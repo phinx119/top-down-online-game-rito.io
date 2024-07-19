@@ -26,8 +26,8 @@ public class PlayerHealth : MonoBehaviour
 
     void Update()
     {
-        health = player.GetComponent<PlayerStats>().currHealth;
-        maxHealth = player.GetComponent<PlayerStats>().maxHealth;
+        player.GetComponent<PlayerStats>().currHealth = health;
+        player.GetComponent<PlayerStats>().maxHealth = maxHealth;
     }
 
     void OnTriggerEnter2D(Collider2D collider)
