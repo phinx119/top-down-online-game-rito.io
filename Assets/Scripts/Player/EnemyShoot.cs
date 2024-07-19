@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerEnemyShoot : MonoBehaviour
+public class EnemyShoot : MonoBehaviour
 {
     public GameObject bullet;
     public Transform firePoint;
@@ -22,28 +22,23 @@ public class PlayerEnemyShoot : MonoBehaviour
             if (shootIntervalCounter <= 0)
             {
                 FireBullet();
+                shootIntervalCounter = shootInterval;
             }
         }
     }
 
     GameObject FindNearestEnemy()
     {
-        GameObject nearestEnemy = null;
-        float nearestDistance = Mathf.Infinity;
-
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-
-        foreach (GameObject player in players)
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
         {
             float distance = Vector3.Distance(transform.position, player.transform.position);
-            if (distance < nearestDistance)
+            if (distance <= detectionRange)
             {
-                nearestDistance = distance;
-                nearestEnemy = player;
+                return player;
             }
         }
-
-        return nearestEnemy;
+        return null;
     }
 
     bool IsEnemyInRange(Transform enemy)
@@ -61,8 +56,6 @@ public class PlayerEnemyShoot : MonoBehaviour
 
     void FireBullet()
     {
-        shootIntervalCounter = shootInterval;
-
         GameObject bulletTmp = Instantiate(bullet, firePoint.position, firePoint.rotation);
         Rigidbody2D rb = bulletTmp.GetComponent<Rigidbody2D>();
         rb.AddForce(firePoint.right * bulletForce, ForceMode2D.Impulse);

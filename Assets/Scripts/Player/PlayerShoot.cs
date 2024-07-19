@@ -22,6 +22,7 @@ public class PlayerShoot : MonoBehaviour
             if (shootIntervalCounter <= 0)
             {
                 FireBullet();
+                shootIntervalCounter = shootInterval;
             }
         }
     }
@@ -31,15 +32,15 @@ public class PlayerShoot : MonoBehaviour
         GameObject nearestEnemy = null;
         float nearestDistance = Mathf.Infinity;
 
-        GameObject[] players = GameObject.FindGameObjectsWithTag("PlayerEnemy");
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("PlayerEnemy");
 
-        foreach (GameObject player in players)
+        foreach (GameObject enemy in enemies)
         {
-            float distance = Vector3.Distance(transform.position, player.transform.position);
+            float distance = Vector3.Distance(transform.position, enemy.transform.position);
             if (distance < nearestDistance)
             {
                 nearestDistance = distance;
-                nearestEnemy = player;
+                nearestEnemy = enemy;
             }
         }
 
@@ -61,8 +62,6 @@ public class PlayerShoot : MonoBehaviour
 
     void FireBullet()
     {
-        shootIntervalCounter = shootInterval;
-
         GameObject bulletTmp = Instantiate(bullet, firePoint.position, firePoint.rotation);
         Rigidbody2D rb = bulletTmp.GetComponent<Rigidbody2D>();
         rb.AddForce(firePoint.right * bulletForce, ForceMode2D.Impulse);
