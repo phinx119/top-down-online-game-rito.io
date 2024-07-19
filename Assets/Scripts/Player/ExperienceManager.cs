@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class ExperienceManager : MonoBehaviour
 {
@@ -29,15 +27,18 @@ public class ExperienceManager : MonoBehaviour
 
     void Update()
     {
-        AddExperience();   
+        AddExperience();
     }
 
     public void AddExperience()
     {
-        totalExperience = player.GetComponent<PlayerStats>().currExp;
-        CheckForLevelUp();
-        UpdateInterface();
-        leaderboardManager.AddOrUpdateEntry(player);
+        if (player != null)
+        {
+            totalExperience = player.GetComponent<PlayerStats>().currExp;
+            CheckForLevelUp();
+            UpdateInterface();
+            leaderboardManager.AddOrUpdateEntry(player);
+        }
     }
 
     void CheckForLevelUp()

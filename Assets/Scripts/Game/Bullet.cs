@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -20,8 +19,11 @@ public class Bullet : MonoBehaviour
 
     void Update()
     {
-        bulletDamage = player.GetComponent<PlayerStats>().damage;
-        LifeTime = player.GetComponent<PlayerStats>().range;
+        if (player != null)
+        {
+            bulletDamage = player.GetComponent<PlayerStats>().damage;
+            LifeTime = player.GetComponent<PlayerStats>().range;
+        }
     }
 
     private IEnumerator EnableColliderAfterDelay(float delay)

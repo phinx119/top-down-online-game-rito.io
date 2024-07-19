@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,7 +20,10 @@ public class ButtonCreate : MonoBehaviour
 
     void Update()
     {
-        currLevel = player.GetComponent<PlayerStats>().level;
+        if (player != null)
+        {
+            currLevel = player.GetComponent<PlayerStats>().level;
+        }
         if (!buttonsGeneratedForCurrentLevel && currLevel % 3 == 0 && currLevel > 0)
         {
             GeneratePowerUpButton();
