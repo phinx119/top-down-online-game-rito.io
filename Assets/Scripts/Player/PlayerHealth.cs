@@ -49,7 +49,7 @@ public class PlayerHealth : MonoBehaviour
     {
         health -= bulletDamage;
         healthBar.updateHealthBar(health, maxHealth);
-        if (health <= 0)
+        if (health <= 0 && !isPlayerEnemy)
         {
             playerDie(bullet);
         }
