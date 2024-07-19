@@ -40,7 +40,7 @@ public class PlayerHealth : MonoBehaviour
             {
                 float bulletDamage = bullet.bulletDamage;
                 Destroy(collider.gameObject);
-                if (!isPlayerEnemy) takeDamage(bulletDamage, collider.gameObject);
+                takeDamage(bulletDamage, collider.gameObject);
             }
         }
     }
