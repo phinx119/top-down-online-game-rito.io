@@ -18,7 +18,7 @@ public class WSClient : MonoBehaviour
     public GameObject leaderboard;
     private LeaderboardManager leaderboardManager;
     private PlayerStats playerStats;
-
+    private bool isDisconnected = false;
     async void Start()
     {
         string inputUrl = MainMenu.serverUrl;
@@ -93,7 +93,7 @@ public class WSClient : MonoBehaviour
                 {
                     var message = Encoding.UTF8.GetString(buffer, 0, result.Count);
                     Debug.Log("Message received: " + message);
-                    HandleIncomingMessage(message);
+                    if (!isDisconnected) HandleIncomingMessage(message);
                 }
             }
         }
@@ -199,7 +199,7 @@ public class WSClient : MonoBehaviour
 
     private IEnumerator SendPlayerPositionAtIntervals()
     {
-        while (true)
+        while (!isDisconnected)
         {
             SendPlayerPosition();
             yield return new WaitForSeconds(sendInterval);
@@ -213,6 +213,8 @@ public class WSClient : MonoBehaviour
 
     public async void Abort()
     {
+        isDisconnected = true;
+
         if (websocket != null)
         {
             try
